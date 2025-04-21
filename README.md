@@ -52,3 +52,50 @@ Nguyễn Thế Dương _ K225480106007
 4. Nhập dữ liệu có kiểm soát, 
    nhằm để test sự hiệu quả của việc trigger auto run.
 5. Kết luận về Trigger. 
+
+# GIẢI 
+- Dựa trên CSDL của đề tài ta có bảng VE , với các trường thông tin
+( id_ve, id_lich, id_ghe, id_nd, trang_thai, thoi_gian_dat )
+- Bổ sung trường phi chuẩn (gia_ve)
+ Vì giá vé có thể tính toán được dựa vào suát chiếu , loại ghế, ngày chiếu  
+→ Nhưng thêm trực tiếp vào bảng sẽ giúp:  
+Truy xuất nhanh hơn trong các báo cáo (thay vì JOIN nhiều bảng rồi tính toán)  
+Hữu ích cho lưu giữ lịch sử giá vé theo từng thời điểm  
+- Viết trigger cho bảng VE
+  Mỗi khi INSERT vé mới → hệ thống tự tính gia_ve theo logic trên.
+  ![Untitled9](https://github.com/user-attachments/assets/437fcc52-51c9-4672-87d4-d210c61c368f)
+- Dữ liệu trong bảng VE
+![Untitled9](https://github.com/user-attachments/assets/4a593f8e-468f-4081-9878-3f19d00193aa)
+ - Kết Luận
+   TRigger
+   Trigger giúp tự động thực hiện logic khi có INSERT, UPDATE hoặc DELETE trên bảng.  
+Trong bài, trigger được dùng để:  
+Tự động tính gia_ve khi người dùng đặt vé (AFTER INSERT)  
+(Tùy chọn) Cập nhật lại giá vé nếu thông tin thay đổi (AFTER UPDATE)  
+(Tùy chọn) Ghi log các thay đổi để truy vết và kiểm tra dữ liệu.  
+- Trigger giúp giảm lỗi và chuẩn hóa logic tính toán
+  Không cần tính giá thủ công hay qua ứng dụng, trigger đảm bảo:  
+Giá vé được tính nhất quán theo các điều kiện: ghế cao cấp, giờ chiếu tối, cuối tuần.  
+Trigger chạy trong nền, không cần người dùng can thiệp.  
+  - Có thể mở rộng trigger để ghi log, hỗ trợ kiểm tra sau này  
+Việc ghi vào bảng LOG_TRIGGER giúp: 
+Kiểm tra trigger có hoạt động không.  
+Biết rõ vì sao giá vé có giá trị đó (theo lý do như “ghế cao cấp”, “chiếu tối”...).  
+Tuy nhiên, cần chắc chắn câu lệnh INSERT vào log phải đúng logic và chạy sau tính giá.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
