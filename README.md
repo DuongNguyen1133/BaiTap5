@@ -66,6 +66,21 @@ Hữu ích cho lưu giữ lịch sử giá vé theo từng thời điểm
   ![Untitled9](https://github.com/user-attachments/assets/437fcc52-51c9-4672-87d4-d210c61c368f)
 - Dữ liệu trong bảng VE
 ![Untitled9](https://github.com/user-attachments/assets/4a593f8e-468f-4081-9878-3f19d00193aa)
+
+- Cách trigger trg_tinh_gia_ve hoạt động
+Khi một bản ghi mới được chèn vào bảng VE, trigger trg_tinh_gia_ve sẽ tự động chạy.   
+Trigger này tính toán giá vé dựa trên logic cụ thể:  
+Giá vé cơ bản là 80000.  
+Nếu số ghế (GHE.so_ghe) bắt đầu bằng các chữ cái đặc biệt như 'D' hoặc 'E', thì có thêm logic điều kiện phụ để thay đổi giá.
+![Untitled10](https://github.com/user-attachments/assets/720f64d0-7210-4e3f-906a-9e102f1ad435)
+
+- Ta kiểm tả trigger hoạt động
+  Thực hiển INSERT thêm một dòng mới vào trong bảng VE
+  ![Untitled11](https://github.com/user-attachments/assets/266e2ebf-793f-4063-80cf-cae8008ea938)
+
+Kiểm tra bảng VE để xem giá vé (gia_ve) có được cập nhật chính xác không:
+![Untitled11](https://github.com/user-attachments/assets/37264b1c-1b1b-4a6d-a7c5-8537a0af9318)
+
  - Kết Luận
    TRigger
    Trigger giúp tự động thực hiện logic khi có INSERT, UPDATE hoặc DELETE trên bảng.  
